@@ -10,19 +10,19 @@
 ## Introduction
 In distributed systems, tasks may fail due to temporary issues such as:
 
--Network failures.
--Service downtime.
--Database connection errors.
+- Network failures.
+- Service downtime.
+- Database connection errors.
 
 To handle such failures reliably, task retry mechanisms are used.
 
 Celery provides built-in support for retrying failed tasks, ensuring that temporary issues do not cause permanent failures.
 
 ## Objective : 
-Understand task retries
-Learn the concept of exponential backoff
-Analyze how Celery handles task failures
-Study retry patterns for reliable system design
+- Understand task retries
+- Learn the concept of exponential backoff
+- Analyze how Celery handles task failures
+- Study retry patterns for reliable system design
 
 ** Understand how Celery handles task failure by retrying temporary errors instead of failing
 immediately. The goal is to explain the retry pattern in simple terms and describe when retries
