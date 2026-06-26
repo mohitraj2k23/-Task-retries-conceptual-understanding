@@ -81,7 +81,11 @@ If there are no retries:
 - The user gets an error even though the problem was just a 2-second network hiccup.
 - The system becomes **fragile** — any small failure breaks the whole flow.
 
-With retries, the system can **heal itself** without any human intervention.
+## Why Task Retries are Needed :
+- System becomes fault-tolerant
+- Temporary failures are handled automatically
+- Reliability improves significantly
+**Retries improve reliability, but they must be used carefully. If a task keeps retrying too aggressively, it can overload the system and make outages worse rather than better.**
 
 ---
 
