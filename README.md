@@ -47,10 +47,10 @@ should stop. **
 ## 1. What is a Task Retry?
 
 When a Celery task fails (throws an error), instead of just giving up, Celery can **try running it again**. This is called a **retry**.
-or 
+or
 Task retry is the process of automatically re-executing a failed task after a certain delay.
 
-# Instead of failing immediately, the system:
+#Instead of failing immediately, the system:
 - Detects failure
 - Waits for a specific time
 - Retries the task
