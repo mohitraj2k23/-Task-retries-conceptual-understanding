@@ -24,9 +24,10 @@ Celery provides built-in support for retrying failed tasks, ensuring that tempor
 - Analyze how Celery handles task failures
 - Study retry patterns for reliable system design
 
-- ** Understand how Celery handles task failure by retrying temporary errors instead of failing
+ ** Understand how Celery handles task failure by retrying temporary errors instead of failing
 immediately. The goal is to explain the retry pattern in simple terms and describe when retries
 should stop. **
+
 ## Table of Contents
 
 1. [What is a Task Retry?](#1-what-is-a-task-retry)
@@ -46,13 +47,13 @@ should stop. **
 ## 1. What is a Task Retry?
 
 When a Celery task fails (throws an error), instead of just giving up, Celery can **try running it again**. This is called a **retry**.
+or 
+Task retry is the process of automatically re-executing a failed task after a certain delay.
 
-Think of it like this:
-- You send a message to someone.
-- They do not respond.
-- Instead of never trying again, you wait a bit and send the message again.
-
-That is exactly what a task retry does — it gives the task another chance to succeed.
+# Instead of failing immediately, the system:
+- Detects failure
+- Waits for a specific time
+- Retries the task
 
 ---
 
