@@ -24,7 +24,7 @@ Celery provides built-in support for retrying failed tasks, ensuring that tempor
 - Analyze how Celery handles task failures
 - Study retry patterns for reliable system design
 
-** Understand how Celery handles task failure by retrying temporary errors instead of failing
+- ** Understand how Celery handles task failure by retrying temporary errors instead of failing
 immediately. The goal is to explain the retry pattern in simple terms and describe when retries
 should stop. **
 ## Table of Contents
