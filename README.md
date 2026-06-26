@@ -1,6 +1,4 @@
 # Task-retries-conceptual-understanding
-This report explains the concepts of task retries and exponential backoff in Celery. It focuses on how failed tasks can be retried automatically and how increasing delay between retries improves system reliability.
-
 
 **Module:** Celery Module  
 **Task:** T4 — Task Retries Conceptual Understanding  
@@ -9,7 +7,28 @@ This report explains the concepts of task retries and exponential backoff in Cel
 **Duration:** 3 Days
 
 ---
+## Introduction
+In distributed systems, tasks may fail due to temporary issues such as:
 
+-Network failures
+-Service downtime
+-Database connection errors
+
+To handle such failures reliably, task retry mechanisms are used.
+
+Celery provides built-in support for retrying failed tasks, ensuring that temporary issues do not cause permanent failures.
+
+## Objective
+To: 
+Understand task retries
+Learn the concept of exponential backoff
+Analyze how Celery handles task failures
+Study retry patterns for reliable system design
+
+
+# Understand how Celery handles task failure by retrying temporary errors instead of failing
+immediately. The goal is to explain the retry pattern in simple terms and describe when retries
+should stop.
 ## Table of Contents
 
 1. [What is a Task Retry?](#1-what-is-a-task-retry)
