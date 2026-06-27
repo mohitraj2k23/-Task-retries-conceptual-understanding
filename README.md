@@ -97,7 +97,7 @@ The key settings Celery uses for retries:
 
 | Setting | What it means |
 |---|---|
-| `max_retries` | How many times to retry before giving up |
+| `max_retries` | This is the maximum number of retry attempts before Celery gives up. Celeryʼs default max_retries is 3/5 |
 | `countdown` | How many seconds to wait before retrying |
 | `retry_backoff` | Whether to use exponential backoff (True/False) |
 | `retry_backoff_max` | Maximum wait time between retries (in seconds) |
