@@ -99,26 +99,24 @@ The key settings Celery uses for retries:
 |---|---|
 | `max_retries` | This is the maximum number of retry attempts before Celery gives up. Celeryʼs default max_retries is 3/5 |
 | `countdown` | How many seconds to wait before retrying |
-| `retry_backoff` | Whether to use exponential backoff (True/False) |
-| `retry_backoff_max` | Maximum wait time between retries (in seconds) |
-| `retry_jitter` | Whether to add randomness to wait time (True/False) |
+| `retry_backoff` | This enables exponential retry delays. It tells Celery to wait longer after each failure |
+| `retry_backoff_max` | This limits the maximum delay between retries. Celeryʼs default maximum is 600 seconds, or 10 minutes |
+| `retry_jitter` | This adds randomness to retry timing so many tasks do not retry at exactly the same moment. |
 
-> Note: These are concepts/settings, not code instructions. The actual implementation is outside the scope of this task.
 
 ---
 
 ## 5. What is Exponential Backoff?
 
-**Exponential backoff** is a strategy where the **wait time between retries keeps increasing** with each attempt.
-
-Instead of waiting the same amount of time every retry (e.g., always 5 seconds), you wait:
-- A little time after the 1st failure
-- More time after the 2nd failure
-- Even more time after the 3rd failure
-- And so on...
-
-The wait time grows **exponentially** — meaning it doubles (or multiplies) with each attempt.
-
+**Exponential backoff** means the waiting time between retries increases after each failure.
+Instead of retrying immediately over and over, Celery waits longer each time.
+A simple retry pattern looks like this: 
+- First retry: wait 1 second.
+- Second retry: wait 2 seconds.
+- Third retry: wait 4 seconds.
+- Fourth retry: wait 8 seconds.
+This protects the system from repeated fast failures and gives the external service time to
+recover.
 ### Why Not Just Retry Immediately?
 
 If hundreds of tasks all fail at the same time (like during a database outage) and all retry immediately and repeatedly, they will **hammer the already-struggling service** and make things worse. This is called a **thundering herd problem**.
@@ -201,30 +199,23 @@ Jitter is a simple but powerful addition to exponential backoff.
 
 ---
 
-## 9. Retry Pattern Summary Table
+## 9. Retry Pattern Summary
 
-| Pattern | Description | Benefit |
-|---|---|---|
-| Fixed retry | Wait the same time every retry | Simple, predictable |
-| Exponential backoff | Wait time doubles each retry | Reduces load on recovering services |
-| Exponential backoff + max retries | Stop retrying after N attempts | Prevents infinite loops |
-| Exponential backoff + jitter | Add randomness to wait time | Prevents thundering herd |
-| Exponential backoff + cap | Set a maximum wait time limit | Prevents extremely long waits |
-
-The **recommended pattern** for production systems is:
-
-> **Exponential backoff + jitter + max retries + a cap on maximum wait time**
+The overall pattern is:
+1. The task runs.
+2. It fails because of a temporary issue.
+3. Celery retries the task a er a delay.
+4. The delay becomes longer a er each retry.
+5. The task eventually succeeds or stops after max_retries.
 
 ---
 
 ## 11. Key Takeaways
-
-- Tasks in Celery can and do fail — usually due to temporary external issues.
-- Retrying failed tasks makes systems more **resilient and self-healing**.
-- **Exponential backoff** is the standard pattern: wait time doubles after each failure.
-- **Jitter** is added to prevent many tasks from retrying at the exact same time.
-- **Max retries** ensures we do not retry forever — eventually the task is marked as failed.
-- These patterns together protect both the Celery worker and the external services it calls.
+- Task retries handle temporary failures.
+- Exponential backoff increases the delay between attempts.
+- max_retries controls how many attempts are allowed.
+- retry_jitter helps prevent many retries at once.
+- Good retry design improves reliability and resilience.
 
 ---
 
