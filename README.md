@@ -28,21 +28,7 @@ Celery provides built-in support for retrying failed tasks, ensuring that tempor
 immediately. The goal is to explain the retry pattern in simple terms and describe when retries
 should stop. **
 
-## Table of Contents
 
-1. [What is a Task Retry?](#1-what-is-a-task-retry)
-2. [Why Do Tasks Fail?](#2-why-do-tasks-fail)
-3. [What Happens Without Retries?](#3-what-happens-without-retries)
-4. [How Celery Handles Retries](#4-how-celery-handles-retries)
-5. [What is Exponential Backoff?](#5-what-is-exponential-backoff)
-6. [The Exponential Backoff Pattern — Step by Step](#6-the-exponential-backoff-pattern--step-by-step)
-7. [Max Retries — When to Stop](#7-max-retries--when-to-stop)
-8. [Jitter — Why We Add Randomness](#8-jitter--why-we-add-randomness)
-9. [Retry Pattern Summary Table](#9-retry-pattern-summary-table)
-10. [Key Takeaways](#11-key-takeaways)
-11. [References](#12-references)
-
----
 
 ## 1. What is a Task Retry?
 
